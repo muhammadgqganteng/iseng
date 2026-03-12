@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prank Gambar Kabur</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; 
+            background-color: #f0f0f0;
+        }
+
+        #prank-img {
+            position: absolute;
+            width: 150px;
+            cursor: pointer;
+            transition: all 0.2s ease; 
+        }
+    </style>
+</head>
+<body>
+
+    <img id="prank-img" src="https://via.placeholder.com!" alt="Prank">
+
+    <script>
+        const img = document.getElementById('prank-img');
+
+
+        function moveImage() {
+            const maxX = window.innerWidth - img.clientWidth;
+            const maxY = window.innerHeight - img.clientHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            img.style.left = randomX + 'px';
+            img.style.top = randomY + 'px';
+        }
+
+
+        img.addEventListener('mouseover', moveImage);
+        
+
+        img.addEventListener('click', () => {
+            alert('Wah, kamu cepat juga! Tapi tetap gagal.');
+            moveImage();
+        });
+    </script>
+
+</body>
+</html>
