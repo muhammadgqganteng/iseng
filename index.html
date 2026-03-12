@@ -13,13 +13,17 @@
             align-items: center;
             overflow: hidden; 
             background-color: #f0f0f0;
+            touch-action: none;
         }
 
         #prank-img {
             position: absolute;
             width: 150px;
             cursor: pointer;
-            transition: all 0.2s ease; 
+            transition: all 0.15s ease; 
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-tap-highlight-color: transparent;
         }
     </style>
 </head>
@@ -30,8 +34,11 @@
     <script>
         const img = document.getElementById('prank-img');
 
+        function moveImage(e) {
+            if (e) {
+                e.preventDefault();
+            }
 
-        function moveImage() {
             const maxX = window.innerWidth - img.clientWidth;
             const maxY = window.innerHeight - img.clientHeight;
 
@@ -42,13 +49,12 @@
             img.style.top = randomY + 'px';
         }
 
-
         img.addEventListener('mouseover', moveImage);
-        
+        img.addEventListener('touchstart', moveImage, { passive: false });
 
-        img.addEventListener('click', () => {
+        img.addEventListener('click', (e) => {
             alert('Wah, kamu cepat juga! Tapi tetap gagal.');
-            moveImage();
+            moveImage(e);
         });
     </script>
 
